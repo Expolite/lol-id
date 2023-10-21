@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOL-ID | meme ID</title>
+
+
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            /* Default font use (optional) */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+
+
+        h1 
+        {
+            background-color: #286bd3;
+            font-family: arial;
+            font-weight: lighter;
+            color: white;
+            padding: 5px;
+        }
+        .txt_field 
+        {
+            padding: 5px;
+            margin-top: 10px;
+            width: 250px;
+        }
+
+        .btn_submit
+        {
+            padding: 5px 10px;
+            width: 250px;
+            cursor: pointer;
+            background-color: #286bd3;
+            color: white;
+            font-size: 15px;
+            margin-top: 10px;
+            border: 1px solid #286bd3;
+        }
+
+        footer 
+        {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #286bd3;
+            color: white;
+            font-family: Courier New;
+            padding: 7px;
+            text-align: center;            
+        }
+    </style>
+</head>
+<body>
+
+<center>
+    <h1>LOL-ID | meme ID</h1>
+
+    <br>
+
+    <label for="#">Please put the information needed to create your ID meme</label> <br>
+    <input type="text" class="txt_field" id="txt_field_name" placeholder="Enter your name">
+    <br>
+    <input type="text" class="txt_field" id="txt_field_birthdate" placeholder="Enter your birthdate">
+
+    <br>
+
+    <button type="button" class="btn_submit" onclick="tryme()">Submit</button>
+
+    <br>
+    <br>
+
+    <hr>
+
+    <br>
+
+    <h3 style="margin-bottom: 10px;">Sample:</h3>
+    <img src="img/sample_ID.png" height="300" alt="sample id">
+</center>
+
+</body>
+
+<footer>
+    Created by KMR for memes &copy; 2023
+</footer>
+
+
+<script type="text/javascript">
+
+function tryme() {
+
+    // get value
+    var txtfield_name = document.getElementById("txt_field_name").value;
+    var txtfield_birthdate = document.getElementById("txt_field_birthdate").value;
+
+    // Check data if not empty
+    if(txtfield_name.trim().length == 0) 
+    {
+        alert("Please enter your name.");
+    }
+    else if(txtfield_birthdate.trim().length == 0) 
+    {
+        alert("Please enter your birthdate.");
+    }
+    else
+    {
+        // Session
+        sessionStorage.setItem("userName", txtfield_name);
+        sessionStorage.setItem("userBirthdate", txtfield_birthdate);
+        
+        window.location.href = 'printPage.html';
+    }
+
+
+
+}
+</script>

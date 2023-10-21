@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOL-ID | meme ID</title>
+
+    <!-- NPM -->
+    <script type="text/javascript" src="assets/html2canvas.esm.js"></script>
+    <script type="text/javascript" src="assets/html2canvas.js"></script>
+    <script type="text/javascript" src="assets/html2canvas.min.js"></script>
+
+
+
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            /* Default font use (optional) */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        h1 
+        {
+            background-color: #286bd3;
+            font-family: arial;
+            font-weight: lighter;
+            color: white;
+            padding: 5px;
+            text-align: center;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+
+
+        .btn_convert 
+        {
+            padding: 5px 10px;
+            background-color: #286bd3;
+            color: white;
+            cursor: pointer;
+            border: 1px solid #286bd3;
+            font-family: arial;
+            font-size: 20px;
+        }
+
+        #capture 
+        {
+            border: 1px solid black;
+            background-color: white;
+            padding: 10px;
+            margin: 10px;
+            width: 700px;
+            height: 418px;
+        }
+
+        .btn_homepg
+        {
+            border: 1px solid #286bd3;
+            padding: 5px 10px;
+            background-color: #286bd3;
+            color: white;
+            cursor: pointer;
+            margin: 10px;
+            font-family: arial;
+            font-size: 15px;
+        }
+
+
+
+
+
+
+        /* CARD 1 ============================================================== */
+        .header_1
+        {
+            border: 1px solid blue;
+            background-color: blue;
+            color: white;
+            font-family: arial;
+            font-size: 70px;
+            text-align: center;
+            height: 80px;
+        }
+
+        .body_1
+        {
+            margin-top: 10px;
+            display: flex;
+            with: 100%;
+            font-family: arial;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .contents_A_1 
+        {
+            width: 60%;
+        }
+
+        .contents_B_1 
+        {
+            width: 40%;
+            text-align: center;
+        }
+        .contents_B_1 img 
+        {
+            border: 1px solid black;
+        }
+
+        .footer_1 
+        {
+            margin-top: 10px;
+            font-family: arial;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .footer_bottom_1
+        {
+            background-color: blue;
+            font-family: arial;
+            color: white;
+            text-align: center;
+            font-weight: lighter;
+            font-size: 25px;
+            padding: 10px;
+            margin-top: 17px;
+        }
+
+
+
+
+        footer 
+        {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #286bd3;
+            color: white;
+            font-family: Courier New;
+            padding: 7px;
+            text-align: center;            
+        }
+    </style>
+</head>
+<body>
+
+
+
+<h1>LOL-ID | meme ID</h1>
+
+<button type="button" onclick="window.location.href = 'index.html';" class="btn_homepg">&#8592; Return to Home page</button>
+
+
+<div align="center" style="overflow-x: auto; border: 1px solid black; background-color: #D0D3D4;">
+    <div align="left" id="capture">
+        <!-- HEADER -->
+        <div class="header_1">
+            FBl &nbsp;PASS
+        </div>
+        <!-- BODY CONTENTS -->
+        <div class="body_1">
+            <div class="contents_A_1">
+                NAME: &nbsp; <span id="result_name"></span>
+                <p>
+                    This card can protect you from FBl <br>
+                    Which can make you have loli <br>
+                    Without catching by the FBl
+                </p>
+            </div>
+            <div align="right" class="contents_B_1" style="position: relative;">
+                <!-- <img src="img/pfp_sample.jpg" height="150" width="150" alt="Profile picture"> -->
+                <!-- Upload image -->
+                <input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;">
+                <img id="output" height="150" width="150" /> <br>
+                <label for="file" id="uploadLabel" style="position: absolute; left: 100px; top: 50px; cursor: pointer; font-size: 15px;">Click here<br>to upload <br>Image</label>
+            </div>
+        </div>
+        <!-- FOOTER -->
+        <div class="footer_1">
+            <p>
+                Member since: After Born <br>
+                Expiration: Last Breath (Death) <br>
+                Birthdate: <span id="result_birthdate"></span>
+            </p>
+            <div class="footer_bottom_1">
+                LICENSE TO HAVE LOLI
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<center>
+    <button type="button" id="btn_convert" class="btn_convert" onclick="generateHTMLtoImg()">Convert to Image</button>
+</center>
+
+<br>
+<hr>
+<div align="center" style="font-family: arial; margin: 10px;">Scroll down, the image will generate below and you can download it :></div>
+
+
+
+
+
+<div align="center">
+    <p id="printImage"></p>
+</div>
+
+<br>
+
+
+
+</body>
+
+
+<footer>
+    Created by KMR for memes &copy; 2023
+</footer>
+
+<script>
+
+    // Get data from Page <index.html>
+    var txtfield_name = sessionStorage.getItem("userName");
+    var txtfield_birthdate = sessionStorage.getItem("userBirthdate");
+    
+    // display data by ID
+    document.getElementById("result_name").innerHTML = txtfield_name;
+    document.getElementById("result_birthdate").innerHTML = txtfield_birthdate;
+
+    /***********************************************************************************************
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     ************************************************************************************************/
+
+    // Upload image
+    var loadFile = function(event) {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+        uploadLabel.style.display = "none";
+    };
+
+     /***********************************************************************************************
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     ************************************************************************************************/
+
+    // Generate HTML div to Image =====================================================================
+    function generateHTMLtoImg()
+    {
+        html2canvas(document.querySelector("#capture")).then(canvas => {
+            // document.body.appendChild(canvas)
+            document.getElementById("printImage").appendChild(canvas)
+
+            // Scroll down
+            // horizontal, vertival (pixel)
+            window.scrollBy(0, 400)
+
+            // Remove convert button
+            btn_convert.style.display = "none";
+        });
+    }
+</script>
