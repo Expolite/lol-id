@@ -47,6 +47,10 @@
             border: 1px solid #286bd3;
             font-family: arial;
             font-size: 20px;
+            transition: padding .5s ease;
+        }
+        .btn_convert:hover {
+            padding: 5px 40px;
         }
 
         #capture 
@@ -92,7 +96,7 @@
         {
             margin-top: 10px;
             display: flex;
-            with: 100%;
+            width: 100%;
             font-family: arial;
             font-size: 20px;
             font-weight: bold;
@@ -133,6 +137,21 @@
         }
 
 
+        .btn_download_canvas {
+            color: white;
+            font-family: arial;
+            font-size: 18px;
+            background-color: #1ccc28;
+            padding: 5px 15px;
+            border: 1px solid #1ccc28;
+            cursor: pointer;
+            transition: padding .5s ease;
+        }
+        .btn_download_canvas:hover {
+            padding: 5px 50px;
+        }
+
+
 
 
         footer 
@@ -145,7 +164,7 @@
             color: white;
             font-family: Courier New;
             padding: 7px;
-            text-align: center;            
+            text-align: center;          
         }
     </style>
 </head>
@@ -198,6 +217,7 @@
 
 <br>
 
+<!-- Convert btn -->
 <center>
     <button type="button" id="btn_convert" class="btn_convert" onclick="generateHTMLtoImg()">Convert to Image</button>
 </center>
@@ -208,12 +228,19 @@
 
 
 
-
-
+<!-- Display canvas -->
 <div align="center" style="overflow-x: auto;">
-    <p id="printImage"></p>
+    <div id="printImage"></div>
+
+    <br>
+
+    <!-- Download canvas -->
+    <button type="button" class="btn_download_canvas" id="download">Download</button>
 </div>
 
+
+<br>
+<br>
 <br>
 
 
@@ -264,11 +291,18 @@
      * 
      ************************************************************************************************/
 
+    // hide Download button first and show after generating the canvas image
+    download.style.display = "none";
+
     // Generate HTML div to Image =====================================================================
     function generateHTMLtoImg()
     {
         html2canvas(document.querySelector("#capture")).then(canvas => {
             // document.body.appendChild(canvas)
+            
+            // set ID
+            canvas.setAttribute('id', `canvas`);
+
             document.getElementById("printImage").appendChild(canvas)
 
             // Scroll down
@@ -277,6 +311,36 @@
 
             // Remove convert button
             btn_convert.style.display = "none";
+
+            // display Download btn
+            download.style.display = "block";
         });
     }
+
+    
+    
+    // Download canvas image
+    document.getElementById('download').addEventListener('click', function(e) {
+
+        // Get generated canvas ID
+        let canvas = document.getElementById('canvas');
+        
+        // Convert our canvas to a data URL
+        // Image format with quality of 59%
+        let canvasUrl = canvas.toDataURL("image/jpg", 0.5);
+        console.log(canvasUrl);
+
+        // Create an anchor, and set the href value to our data URL
+        const createEl = document.createElement('a');
+        createEl.href = canvasUrl;
+
+        // This is the name of our downloaded file
+        createEl.download = "LOL-ID [name: " + txtfield_name + "]";
+
+        // Click the download button, causing a download, and then remove it
+        createEl.click();
+        createEl.remove();
+    });
+
+
 </script>
