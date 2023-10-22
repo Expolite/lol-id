@@ -224,19 +224,27 @@
 
 <br>
 <hr>
-<div align="center" style="font-family: arial; margin: 10px;">Scroll down, the image will generate below and you can download it :></div>
+<div align="center" style="font-family: arial; margin: 10px;">
+    Scroll down, the image will generate below and you can download it :> <br>
+</div>
 
 
 
 <!-- Display canvas -->
 <div align="center" style="overflow-x: auto;">
     <div id="printImage"></div>
+</div>
+
+<br>
+
+<center>
+    <!-- Download canvas -->
+    <button type="button" class="btn_download_canvas" id="download">Download</button>
 
     <br>
 
-    <!-- Download canvas -->
-    <button type="button" class="btn_download_canvas" id="download">Download</button>
-</div>
+    <small><b><span style="color: red;">*</span>NOTE:</b> For iOS user recommend to use Safari or Chrome browser to download works. <br> I'm having a trouble the using Brave and Firefox browser downloading the image in iOS 16.7.1</small>
+</center>
 
 
 <br>
@@ -307,7 +315,7 @@
 
             // Scroll down
             // horizontal, vertival (pixel)
-            window.scrollBy(0, 400)
+            window.scrollBy(0, 500)
 
             // Remove convert button
             btn_convert.style.display = "none";
@@ -350,11 +358,11 @@
 
 
     // Prevent Keys
-    document.addEventListener("keydown", function (event){
-        if(event.keyCode == 123){        // prevent F12
-            event.preventDefault();
-        }
-    });
+    // document.addEventListener("keydown", function (event){
+    //     if(event.keyCode == 123){        // prevent F12
+    //         event.preventDefault();
+    //     }
+    // });
 
 
 
