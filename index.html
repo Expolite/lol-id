@@ -58,7 +58,7 @@
         }
     </style>
 </head>
-<body>
+<body onload="gfg_Run()">
 
 <center>
     <h1>LOL-ID | meme ID</h1>
@@ -152,6 +152,17 @@ function tryme() {
                 break;
         }
     };
+
+
+    // Disable Right-CLick
+    var el_up = document.getElementById("GFG_UP");
+    var el_down = document.getElementById("GFG_DOWN");
+
+    function gfg_Run() {
+        document.addEventListener('contextmenu', 
+            event => event.preventDefault()
+        );
+    }
 
 
 

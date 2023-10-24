@@ -15,3 +15,6 @@ $cyan:    #0dcaf0;
 
 // Other blue:
 #286bd3
+
+
+remote `origin2`
